@@ -1,0 +1,24 @@
+option "title" "Template Ledger"
+; option "title" "Beancount"
+option "operating_currency" "CNY"
+option "render_commas" "TRUE"
+; plugin "beancount.plugins.unrealized" "Unrealized"
+
+; 2000-01-01 custom "fava-option" "language" "zh_CN"
+2000-01-01 custom "fava-option" "currency-column" "65"
+; 2000-01-01 custom "fava-option" "show-closed-accounts" "true"
+2000-01-01 custom "fava-option" "show-accounts-with-zero-transactions" "false"
+2000-01-01 custom "fava-option" "show-accounts-with-zero-balance" "false"
+2000-01-01 custom "fava-option" "collapse-pattern" ".*:.*"
+; 2000-01-01 custom "fava-option" "collapse-pattern" ".*:.*:.*"
+; 2000-01-01 custom "fava-option" "invert-income-liabilities-equity" "true"
+
+; 2000-01-01 custom "fava-sidebar-link" "Income 2024" "../income_statement?time=2024"
+; 2000-01-01 custom "fava-sidebar-link" "Income 2025" "../income_statement?time=2025"
+
+; 2000-01-01 custom "fava-extension" "fava_dashboards"
+
+; include "commodities.bean"
+include "accounts/*.bean"
+include "beans/*.bean"
+; include "importer/*.bean"

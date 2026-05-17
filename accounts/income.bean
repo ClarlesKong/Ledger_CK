@@ -1,32 +1,34 @@
 * Income 收入 ---------------------------------------------------------------------
 
 ; Gross Pay 应发工资
-2021-09-07 open Income:ARMC:GrossPay:BasicSalary            ; Actual Basic Salary 基本月工资
-2021-09-07 open Income:ARMC:GrossPay:MealTranAllowance      ; Meal and Transportation Allowance 补贴
-2021-09-07 open Income:ARMC:GrossPay:13thMonthSalary        ; 13th Month Salary 十三薪
+2021-09-07 open Income:COMPANY:GrossPay:BasicSalary            ; Actual Basic Salary 基本月工资
+2021-09-07 open Income:COMPANY:GrossPay:MealTranAllowance      ; Meal and Transportation Allowance 补贴
+2021-09-07 open Income:COMPANY:GrossPay:13thMonthSalary        ; 13th Month Salary 十三薪
 
-2021-09-07 open Income:ARMC:GrossPay:WelcomeAward           ; Welcome Award 入职奖金
-2021-09-07 open Income:ARMC:GrossPay:PartnershipAward       ; Partnership Award 合作伙伴奖
-2021-09-07 open Income:ARMC:GrossPay:AnnualBonus            ; Annual Bonus 年终奖金
-2021-09-07 open Income:ARMC:GrossPay:ProjectBonus           ; Project Bonus 项目奖金
+2021-09-07 open Income:COMPANY:GrossPay:WelcomeAward           ; Welcome Award 入职奖金
+2021-09-07 open Income:COMPANY:GrossPay:PartnershipAward       ; Partnership Award 合作伙伴奖
+2021-09-07 open Income:COMPANY:GrossPay:AnnualBonus            ; Annual Bonus 年终奖金
+2021-09-07 open Income:COMPANY:GrossPay:ProjectBonus           ; Project Bonus 项目奖金
 
-2021-09-07 open Income:ARMC:GrossPay:Insurance              ; 员工商业保险
+2021-09-07 open Income:COMPANY:GrossPay:Insurance              ; 员工商业保险
 
-2024-06-07 open Income:ARMC:GrossPay:HousingAllowance       ; Housing Allowance 住房补贴
-2024-06-07 open Income:ARMC:GrossPay:RelocationAllowance    ; Relocation Allowance 外派津贴
+2024-06-07 open Income:COMPANY:GrossPay:HousingAllowance       ; Housing Allowance 住房补贴
+2024-06-07 open Income:COMPANY:GrossPay:RelocationAllowance    ; Relocation Allowance 外派津贴
 
-2021-09-07 open Income:ARMC:HousingFund:SH                  ; Housing Fund ER 住房公积金＿公司
-2021-09-07 open Income:ARMC:HousingFund:SH-S                ; Supplementary Housing Fund ER 补充住房公积金＿公司（上海）
-2021-09-07 open Income:ARMC:HousingFund:SZ                  ; Housing Fund ER 住房公积金＿公司
+2021-09-07 open Income:COMPANY:HousingFund:SH                  ; Housing Fund ER 住房公积金＿公司
+2021-09-07 open Income:COMPANY:HousingFund:SH-S                ; Supplementary Housing Fund ER 补充住房公积金＿公司（上海）
+2021-09-07 open Income:COMPANY:HousingFund:SZ                  ; Housing Fund ER 住房公积金＿公司
 
-2021-09-07 open Income:ARMC:Reimbursement                   ; Reimbursement 公司报销
-2021-09-07 open Income:ARMC:Union                           ; Union 工会福利
-2021-09-07 open Income:ARMC:Adjustment                      ; Other Adjustment After Tax 其他税后调整
+2021-09-07 open Income:COMPANY:Reimbursement                   ; Reimbursement 公司报销
+2021-09-07 open Income:COMPANY:Union                           ; Union 工会福利
+2021-09-07 open Income:COMPANY:Adjustment                      ; Other Adjustment After Tax 其他税后调整
 
 ; 人际关系
 1997-09-07 open Income:Relationship:Invitation              ; 人际关系：请客（吃饭、交通、住宿等）
 1997-09-07 open Income:Relationship:Gifts                   ; 人际关系：礼物
 1997-09-07 open Income:Relationship:GiftMoney               ; 人际关系：礼金，红包
+1997-09-07 open Income:Relationship:Parents                 ; 人际关系：父母
+1997-09-07 open Income:Relationship:XX                      ; 人际关系：男/女朋友，老公/老婆
 
 ; 投资
 2021-01-01 open Income:Investment:PnL                       ; 盈亏，Profit and Loss

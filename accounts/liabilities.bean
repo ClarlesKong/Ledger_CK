@@ -1,11 +1,14 @@
-* Liabilities 负债 ----------------------------------------------------------------
+* Credit Card 信用卡 --------------------------------------------------------------
 
-; 信用卡
-2019-05-13 open Liabilities:CreditCard:CIBK-4691            ; 中信银行
-2017-12-15 open Liabilities:CreditCard:CMBC-0035            ; 招商银行
-2024-10-28 open Liabilities:CreditCard:BKCH-8693            ; 中国银行
+2000-01-01 open Liabilities:CreditCard:CMBC-6688            ; 招商银行
 
-; 蚂蚁花呗
-; 京东白条
+* Payables 应付账款 ---------------------------------------------------------------
 
-; Payable 应付账款
+2000-01-01 open Liabilities:Payables:AA                     ; AA 应付款
+2000-01-01 open Liabilities:Payables:Bridge                 ; 过桥应付款
+2000-01-01 open Liabilities:Payables:Reimbursement          ; 报销应付款
+2000-01-01 open Liabilities:Payables:Tax                    ; 补税应付款
+
+* Financing 融资负债 --------------------------------------------------------------
+
+2000-01-01 open Liabilities:ZZ                              ; ZZ借款
