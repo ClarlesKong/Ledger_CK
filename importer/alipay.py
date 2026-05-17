@@ -13,31 +13,31 @@ from datetime import datetime
 account_map = {
     "DEFAULT": "Assets:Unknown",
 
-    "中国移动|上海联通|科学上网": "Expenses:Telecom",
+    "中国移动": "Expenses:Telecom",
     "酒店|宾馆|汉庭|华住": "Expenses:Hotel",
     "爱车养车|小兔充充|出入境管理局": "Expenses:Transport",
 
-    "餐饮美食": "Expenses:EatAndDrink",
+    "餐饮美食": "Expenses:Food",
     "服饰装扮": "Expenses:Clothing",
     "日用百货": "Expenses:DailyUtilities",
+    "生活服务": "Expenses:DailyUtilities",
     "家居家装": "Expenses:HomeDecoration",
     "数码电器": "Expenses:Digital",
     "美容美发": "Expenses:BeautyHair",
     "交通出行": "Expenses:Transport",
-    "住房物业": "Expenses:Rent",
+    "住房物业": "Expenses:Housing",
     "文化休闲": "Expenses:Entertainment",
     "教育培训": "Expenses:Education",
     "医疗健康": "Expenses:Health",
     "公益捐赠": "Expenses:Donation",
+    "保险"    : "Expenses:Insurance",
 
-    "余额宝|账户余额": "Assets:Cash:Alipay",
+    "余额宝|账户余额": "Assets:Cash:Operating:Alipay:YY",
 
     "平安养老保险": "Income:Insurance",
 
-    "招商银行储蓄卡": "Assets:Cash:CMBC-5189:Cash",
-    "中信银行信用卡|银联代收，信用卡还款": "Liabilities:CreditCard:CIBK-4691",
-    "招商银行信用卡|信用卡自扣": "Liabilities:CreditCard:CMBC-0035",
-    "中国银行信用卡|中银信用卡还款": "Liabilities:CreditCard:BKCH-8693",
+    "招商银行储蓄卡": "Assets:Cash:Operating:CMBC-5189",
+    "招商银行信用卡|信用卡自扣": "Liabilities:CreditCard:CMBC-6688",
 }
 
 def mapping_account(account_map, keyword):
@@ -135,7 +135,11 @@ class AlipayParser(object):
                     continue
                 if c['status'] == '退款成功':
                     c['io_type'] = '收入'
-    
+
+            if c['io_type'] == '收入':
+                if c['status'] == '交易关闭': #闲鱼买家付钱后又退款“交易关闭，有退款”
+                    continue
+
             d = {}
             d['date'], d['time'] = self._expand_datetime(c['datetime'])
             d['flag'] = '*'# if default_pass else '!'
@@ -179,6 +183,7 @@ def write_beans(beans, filename=None, savename=None):
     with open(savename, 'w', encoding='utf-8') as file:
         file.write(header+'\n')
         file.write(sep.join(beans))
+        file.write('\n')
 
 def main():
     argparser = argparse.ArgumentParser()

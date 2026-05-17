@@ -10,25 +10,20 @@ from datetime import datetime
 account_map = {
     "DEFAULT": "Assets:Unknown",
 
-    "房租|租金": "Expenses:Rent",
+    "房租|租金": "Expenses:Housing",
     "Octopus": "Expenses:Transport",
 
-    "CMB": "Assets:Cash:CMBC-5189:Cash",
-    "雪球基金": "Assets:Investment:SnowballFund:Cash",
-    "天天基金": "Assets:Investment:TiantianFund:Cash",
+    "CMB": "Assets:Cash:Operating:CMBC-5189",
     "提取托付": "Assets:Government:HousingFund:SZ",
     "约定批量提取": "Assets:Government:HousingFund:SH", # HousingFund:SH-S
 
-    "工资": "Income:ARMC:GrossPay:BasicSalary", # To be refine
-    "报销": "Income:ARMC:Reimbursement",
+    "工资": "Income:COMPANY:GrossPay:BasicSalary", # To be refine
+    "报销": "Income:COMPANY:Reimbursement",
     "平安养老保险": "Income:Insurance",
 
-    "支付宝-余额充值|支付宝-蚂蚁（杭州）基金销售有限公司": "Assets:Cash:Alipay",
-    "零钱通": "Assets:Cash:WeChat",
-    "中信银行信用卡|银联代收，信用卡还款": "Liabilities:CreditCard:CIBK-4691",
-    "招商银行信用卡|信用卡自扣": "Liabilities:CreditCard:CMBC-0035",
-    "中国银行信用卡|中银信用卡还款": "Liabilities:CreditCard:BKCH-8693",
-    "银期转账:徽商期货": "Assets:Investment:HuishangFuture:Positions",
+    "支付宝-余额充值|蚂蚁（杭州）基金销售有限公司": "Assets:Cash:Operating:Alipay:YY",
+    "零钱通": "Assets:Cash:Operating:WeChat:YY",
+    "招商银行信用卡|信用卡自扣": "Liabilities:CreditCard:CMBC-6688",
 }
 
 def mapping_account(account_map, keyword):
@@ -88,7 +83,7 @@ class CMBDebitCardParser(object):
     def parse(self, default_pass=True):
         for row in reversed(list(self.reader)):
             # Skip empty lines, comment lines, and table headers
-            if not row:
+            if not row or row[0]=='':
                 continue
             if row[0].startswith('#') or row[0].startswith('交易日期'):
                 continue
@@ -148,6 +143,7 @@ def write_beans(beans, filename=None, savename=None):
     with open(savename, 'w', encoding='utf-8') as file:
         file.write(header+'\n')
         file.write(sep.join(beans))
+        file.write('\n')
 
 def main():
     argparser = argparse.ArgumentParser()

@@ -13,22 +13,21 @@ from datetime import datetime
 account_map = {
     "DEFAULT": "Assets:Unknown",
 
-    "房租|租金": "Expenses:Rent",
-    "Octopus|途运科技|样样巴士|AA巴士|帅淘|巴士|迅隆船务|ZAKC Limited|大巴|出租车|打车|出行|高铁": "Expenses:Transport",
-    "中国儿童少年基金会|上海联劝公益基金会|上海仁德基金会|水滴筹": "Expenses:Donation",
-    "香蕉|水果|松涛园|Olé|兰州拉面|饿了么": "Expenses:EatAndDrink",
+    "房租|租金": "Expenses:Housing",
+    "出租车|打车|出行|高铁|列车补票": "Expenses:Transport",
+    "中国儿童少年基金会|上海联劝公益基金会|上海仁德基金会|满天星|红十字|水滴筹": "Expenses:Donation",
+    "米线|肠粉": "Expenses:Food",
     "发给|喜欢作者|发出群红包|微信红包-退款": "Expenses:Relationship:GiftMoney",
     "顺丰": "Expenses:DailyUtilities",
     "上海早木信息科技有限公司": "Expenses:Education",
+    "游泳": "Expenses:SportsFitness",
 
-    "零钱|零钱通": "Assets:Cash:WeChat",
+    "零钱|零钱通": "Assets:Cash:Operating:WeChat:YY",
 
     "群收款": "Income:TransferIn",
     "微信红包": "Income:Relationship:GiftMoney",
 
-    "中信银行信用卡|中信银行\(4691\)|银联代收，信用卡还款": "Liabilities:CreditCard:CIBK-4691",
-    "招商银行信用卡|招商银行\(0035\)|信用卡自扣": "Liabilities:CreditCard:CMBC-0035",
-    "中国银行信用卡|中银信用卡还款": "Liabilities:CreditCard:BKCH-8693",
+    "招商银行信用卡|招商银行\(6688\)|信用卡自扣": "Liabilities:CreditCard:CMBC-6688",
 }
 
 def mapping_account(account_map, keyword):
@@ -111,6 +110,12 @@ class WechatParser(object):
             # Skip special lines
             if c['type'].startswith('转入零钱通'):
                 continue
+            if c['type'].startswith('零钱充值'):
+                continue
+            if c['type'].startswith('零钱通转出'):
+                continue
+            if c['payer'] == '/': #支付方式
+                c['payer'] = '零钱'
 
             d = {}
             d['date'], d['time'] = self._expand_datetime(c['datetime'])
@@ -155,6 +160,7 @@ def write_beans(beans, filename=None, savename=None):
     with open(savename, 'w', encoding='utf-8') as file:
         file.write(header+'\n')
         file.write(sep.join(beans))
+        file.write('\n')
 
 def main():
     argparser = argparse.ArgumentParser()
